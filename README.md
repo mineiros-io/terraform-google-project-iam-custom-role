@@ -1,39 +1,40 @@
-[<img src="https://raw.githubusercontent.com/mineiros-io/brand/3bffd30e8bdbbde32c143e2650b2faa55f1df3ea/mineiros-primary-logo.svg" width="400"/>][homepage]
+[<img src="https://raw.githubusercontent.com/mineiros-io/brand/3bffd30e8bdbbde32c143e2650b2faa55f1df3ea/mineiros-primary-logo.svg" width="400"/>](https://mineiros.io/?ref=terraform-google-project-iam-custom-role)
 
-[![Terraform Version][badge-terraform]][releases-terraform]
-[![Google Provider Version][badge-tf-gcp]][releases-google-provider]
-[![Join Slack][badge-slack]][slack]
+[![Build Status](https://github.com/mineiros-io/terraform-google-project-iam-custom-role/workflows/Tests/badge.svg)](https://github.com/mineiros-io/terraform-google-project-iam-custom-role/actions)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/mineiros-io/terraform-google-project-iam-custom-role.svg?label=latest&sort=semver)](https://github.com/mineiros-io/terraform-google-project-iam-custom-role/releases)
+[![Terraform Version](https://img.shields.io/badge/Terraform-1.x-623CE4.svg?logo=terraform)](https://github.com/hashicorp/terraform/releases)
+[![Google Provider Version](https://img.shields.io/badge/google-4-1A73E8.svg?logo=terraform)](https://github.com/terraform-providers/terraform-provider-google/releases)
+[![Join Slack](https://img.shields.io/badge/slack-@mineiros--community-f32752.svg?logo=slack)](https://mineiros.io/slack)
 
 # terraform-google-project-iam-custom-role
 
 A [Terraform](https://www.terraform.io) module to create a [Google Project IAM custom role](https://cloud.google.com/iam/docs/understanding-custom-roles) on [Google Cloud Services (GCP)](https://cloud.google.com/).
 
 **_This module supports Terraform version 1
-and is compatible with the Terraform Google Provider version 3._**
+and is compatible with the Terraform Google Provider version 4._**
 
 This module is part of our Infrastructure as Code (IaC) framework
 that enables our users and customers to easily deploy and manage reusable
 secure, and production-grade cloud infrastructure.
 
-- [terraform-google-project-iam-custom-role](#terraform-google-project-iam-custom-role)
-  - [Module Features](#module-features)
-  - [Getting Started](#getting-started)
-  - [Module Argument Reference](#module-argument-reference)
-    - [Top-level Arguments](#top-level-arguments)
-      - [Module Configuration](#module-configuration)
-      - [Main Resource Configuration](#main-resource-configuration)
-      - [Extended Resource Configuration](#extended-resource-configuration)
-  - [Module Attributes Reference](#module-attributes-reference)
-  - [External Documentation](#external-documentation)
-    - [Google Documentation:](#google-documentation)
-    - [Terraform Google Provider Documentation:](#terraform-google-provider-documentation)
-  - [Module Versioning](#module-versioning)
-    - [Backwards compatibility in `0.0.z` and `0.y.z` version](#backwards-compatibility-in-00z-and-0yz-version)
-  - [About Mineiros](#about-mineiros)
-  - [Reporting Issues](#reporting-issues)
-  - [Contributing](#contributing)
-  - [Makefile Targets](#makefile-targets)
-  - [License](#license)
+
+- [Module Features](#module-features)
+- [Getting Started](#getting-started)
+- [Module Argument Reference](#module-argument-reference)
+  - [Top-level Arguments](#top-level-arguments)
+    - [Module Configuration](#module-configuration)
+    - [Main Resource Configuration](#main-resource-configuration)
+- [Module Outputs](#module-outputs)
+- [External Documentation](#external-documentation)
+  - [Google Documentation:](#google-documentation)
+  - [Terraform Google Provider Documentation:](#terraform-google-provider-documentation)
+- [Module Versioning](#module-versioning)
+  - [Backwards compatibility in `0.0.z` and `0.y.z` version](#backwards-compatibility-in-00z-and-0yz-version)
+- [About Mineiros](#about-mineiros)
+- [Reporting Issues](#reporting-issues)
+- [Contributing](#contributing)
+- [Makefile Targets](#makefile-targets)
+- [License](#license)
 
 ## Module Features
 
@@ -62,13 +63,13 @@ See [variables.tf] and [examples/] for details and use-cases.
 
 #### Module Configuration
 
-- **`module_enabled`**: _(Optional `bool`)_
+- [**`module_enabled`**](#var-module_enabled): *(Optional `bool`)*<a name="var-module_enabled"></a>
 
   Specifies whether resources in the module will be created.
 
   Default is `true`.
 
-- **`module_depends_on`**: _(Optional `list(dependencies)`)_
+- [**`module_depends_on`**](#var-module_depends_on): *(Optional `list(dependencies)`)*<a name="var-module_depends_on"></a>
 
   A list of dependencies. Any object can be _assigned_ to this list to define a hidden external dependency.
 
@@ -82,31 +83,29 @@ See [variables.tf] and [examples/] for details and use-cases.
 
 #### Main Resource Configuration
 
-- **`role_id`**: **_(Required `string`)_**
+- [**`role_id`**](#var-role_id): *(**Required** `string`)*<a name="var-role_id"></a>
 
-  The camelCaseRoleId to use for this role..
+  The camelCaseRoleId to use for this role. Cannot contain `-` characters.
 
-- **`title`**: **_(Required `string`)_**
+- [**`title`**](#var-title): *(**Required** `string`)*<a name="var-title"></a>
 
   A human-readable title for the role.
 
-- **`permissions`**: **_(Required `set(string)`)_**
+- [**`permissions`**](#var-permissions): *(**Required** `set(string)`)*<a name="var-permissions"></a>
 
   The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
 
-- **`stage`**: _(Optional `string`)_
+- [**`stage`**](#var-stage): *(Optional `string`)*<a name="var-stage"></a>
 
   The current launch stage of the role. For more stages visit this link https://cloud.google.com/iam/docs/reference/rest/v1/organizations.roles#Role.RoleLaunchStage.
 
-  Defaults is `GA`
+  Default is `"GA"`.
 
-- **`description`**: _(Optional `string`)_
+- [**`description`**](#var-description): *(Optional `string`)*<a name="var-description"></a>
 
   A human-readable description for the role.
 
-#### Extended Resource Configuration
-
-## Module Attributes Reference
+## Module Outputs
 
 The following attributes are exported in the outputs of the module:
 
@@ -122,11 +121,11 @@ The following attributes are exported in the outputs of the module:
 
 ### Google Documentation:
 
-  - Project IAM Custom Roles: <https://cloud.google.com/iam/docs/understanding-custom-roles>
+- Project IAM Custom Roles: https://cloud.google.com/iam/docs/understanding-custom-roles
 
 ### Terraform Google Provider Documentation:
 
-  - <https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam_custom_role>
+- https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam_custom_role
 
 ## Module Versioning
 
@@ -172,34 +171,24 @@ Run `make help` to see details on each available target.
 ## License
 
 [![license][badge-license]][apache20]
+
 This module is licensed under the Apache License Version 2.0, January 2004.
 Please see [LICENSE] for full details.
 
-Copyright &copy; 2020-2021 [Mineiros GmbH][homepage]
+Copyright &copy; 2020-2022 [Mineiros GmbH][homepage]
+
 
 <!-- References -->
 
 [homepage]: https://mineiros.io/?ref=terraform-google-project-iam
 [hello@mineiros.io]: mailto:hello@mineiros.io
-
-<!-- markdown-link-check-disable -->
-
 [badge-build]: https://github.com/mineiros-io/terraform-google-project-iam-custom-role/workflows/Tests/badge.svg
-
-<!-- markdown-link-check-enable -->
-
 [badge-semver]: https://img.shields.io/github/v/tag/mineiros-io/terraform-google-project-iam-custom-role.svg?label=latest&sort=semver
 [badge-license]: https://img.shields.io/badge/license-Apache%202.0-brightgreen.svg
 [badge-terraform]: https://img.shields.io/badge/Terraform-1.x-623CE4.svg?logo=terraform
 [badge-slack]: https://img.shields.io/badge/slack-@mineiros--community-f32752.svg?logo=slack
-
-<!-- markdown-link-check-disable -->
-
 [build-status]: https://github.com/mineiros-io/terraform-google-project-iam-custom-role/actions
 [releases-github]: https://github.com/mineiros-io/terraform-google-project-iam-custom-role/releases
-
-<!-- markdown-link-check-enable -->
-
 [releases-terraform]: https://github.com/hashicorp/terraform/releases
 [badge-tf-gcp]: https://img.shields.io/badge/google-3.x-1A73E8.svg?logo=terraform
 [releases-google-provider]: https://github.com/terraform-providers/terraform-provider-google/releases
@@ -208,9 +197,6 @@ Copyright &copy; 2020-2021 [Mineiros GmbH][homepage]
 [terraform]: https://www.terraform.io
 [gcp]: https://cloud.google.com/
 [semantic versioning (semver)]: https://semver.org/
-
-<!-- markdown-link-check-disable -->
-
 [variables.tf]: https://github.com/mineiros-io/terraform-google-project-iam-custom-role/blob/main/variables.tf
 [examples/]: https://github.com/mineiros-io/terraform-google-project-iam-custom-role/blob/main/examples
 [issues]: https://github.com/mineiros-io/terraform-google-project-iam-custom-role/issues
@@ -218,5 +204,3 @@ Copyright &copy; 2020-2021 [Mineiros GmbH][homepage]
 [makefile]: https://github.com/mineiros-io/terraform-google-project-iam-custom-role/blob/main/Makefile
 [pull requests]: https://github.com/mineiros-io/terraform-google-project-iam-custom-role/pulls
 [contribution guidelines]: https://github.com/mineiros-io/terraform-google-project-iam-custom-role/blob/main/CONTRIBUTING.md
-
-<!-- markdown-link-check-enable -->

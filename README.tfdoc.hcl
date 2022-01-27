@@ -166,7 +166,7 @@ section {
     output "google_project_iam_custom_role" {
       type        = object(google_project_iam_custom_role)
       description = <<-END
-        A map of outputs of the created google_project_iam_custom_role resource.
+        A map of outputs of the created `google_project_iam_custom_role` resource.
       END
     }
   }

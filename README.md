@@ -115,7 +115,7 @@ The following attributes are exported in the outputs of the module:
 
 - [**`google_project_iam_custom_role`**](#output-google_project_iam_custom_role): *(`object(google_project_iam_custom_role)`)*<a name="output-google_project_iam_custom_role"></a>
 
-  A map of outputs of the created google_project_iam_custom_role resource.
+  A map of outputs of the created `google_project_iam_custom_role` resource.
 
 ## External Documentation
 

@@ -154,15 +154,21 @@ section {
     title   = "Module Outputs"
     content = <<-END
       The following attributes are exported in the outputs of the module:
-
-      - **`module_enabled`**
-
-        Whether this module is enabled.
-
-      - **`google_project_iam_custom_role`**
-
-        A map of outputs of the created google_project_iam_custom_role resource.
     END
+
+    output "module_enabled" {
+      type        = bool
+      description = <<-END
+        Whether this module is enabled.
+      END
+    }
+
+    output "google_project_iam_custom_role" {
+      type        = object(google_project_iam_custom_role)
+      description = <<-END
+        A map of outputs of the created `google_project_iam_custom_role` resource.
+      END
+    }
   }
 
   section {

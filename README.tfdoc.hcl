@@ -61,7 +61,7 @@ section {
 
       ```hcl
       module "terraform-google-project-iam-custom-role" {
-        source = "github.com/mineiros-io/terraform-google-project-iam-custom-role.git?ref=v0.1.0"
+        source = "github.com/mineiros-io/terraform-google-project-iam-custom-role.git?ref=v0.0.2"
 
         role_id     = "myCustomRole"
         title       = "My Custom Role"
